@@ -1,0 +1,347 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    background: linear-gradient(45deg, #000000, #1a1c2c, #2a1b3d, #000000);
+    background-size: 400% 400%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 4px solid #00ff00;
+    border-radius: 15px;
+    padding: 2.5rem;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.3),
+                inset 0 0 20px rgba(0, 255, 0, 0.2);
+    max-width: 700px;
+    width: 95%;
+    position: relative;
+    backdrop-filter: blur(10px);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px solid #00ff00;
+    border-radius: 15px;
+    animation: borderGlow 2s linear infinite;
+    z-index: -1;
+}
+
+@keyframes borderGlow {
+    0% { box-shadow: 0 0 5px #00ff00, inset 0 0 5px #00ff00; }
+    50% { box-shadow: 0 0 20px #00ff00, inset 0 0 10px #00ff00; }
+    100% { box-shadow: 0 0 5px #00ff00, inset 0 0 5px #00ff00; }
+}
+
+h1 {
+    color: #00ff00;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    text-shadow: 2px 2px #000;
+    animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% { text-shadow: 0 0 5px #00ff00; }
+    50% { text-shadow: 0 0 20px #00ff00; }
+}
+
+#question {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    padding: 15px;
+    background-color: rgba(0, 255, 0, 0.1);
+    border: 2px solid #00ff00;
+    border-radius: 8px;
+    text-shadow: 1px 1px #000;
+}
+
+button {
+    padding: 12px 25px;
+    background: linear-gradient(45deg, #00ff00, #00cc00);
+    color: #000;
+    border: 3px solid #00ff00;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px 0;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+button:hover::before {
+    left: 100%;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+.hide {
+    display: none;
+}
+
+#choices button {
+    background: rgba(0, 0, 0, 0.8);
+    color: #00ff00;
+    border: 2px solid #00ff00;
+    text-align: left;
+    width: 100%;
+    transition: all 0.1s ease;
+}
+
+#choices {
+    position: relative;
+    min-height: 240px;
+}
+
+#choices button.shuffling {
+    position: absolute;
+    width: calc(100% - 10px);
+    left: 5px;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+    transform-origin: center;
+    animation: buttonPulse 2s infinite;
+}
+
+@keyframes buttonPulse {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-2px) scale(1.02); }
+    100% { transform: translateY(0) scale(1); }
+}
+
+#choices button:hover {
+    border-color: #4CAF50;
+    background-color: #f8f9fa;
+}
+
+#choices button.correct {
+    background: #00ff00;
+    color: #000;
+    border-color: #00ff00;
+    animation: correctAnswer 0.5s ease-out !important;
+}
+
+@keyframes correctAnswer {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+#choices button.incorrect {
+    background: #ff0000;
+    color: #fff;
+    border-color: #ff0000;
+    animation: incorrectAnswer 0.5s ease-out !important;
+}
+
+@keyframes incorrectAnswer {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+#score {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #00ff00;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #00ff00;
+    border-radius: 8px;
+    text-shadow: 1px 1px #000;
+}
+
+#timer {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1rem;
+    color: #00ff00;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border: 2px solid #00ff00;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+#timer.warning {
+    color: #ff0000;
+    border-color: #ff0000;
+    animation: warning-pulse 0.5s infinite;
+    text-shadow: 0 0 10px #ff0000;
+    animation: warningGlow 0.5s infinite alternate;
+}
+
+@keyframes warningGlow {
+    from { text-shadow: 0 0 10px #ff0000; }
+    to { text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000; }
+}
+
+@keyframes warning-pulse {
+    0%, 100% { transform: scale(1); background: rgba(255, 0, 0, 0.2); }
+    50% { transform: scale(1.05); background: rgba(255, 0, 0, 0.3); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.subtitle {
+    color: #00ff00;
+    text-align: center;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px #000;
+    opacity: 0.8;
+}
+
+.challenge {
+    color: #ff3e3e;
+    text-align: center;
+    font-size: 0.7rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px #000;
+    animation: challengePulse 2s infinite;
+}
+
+@keyframes challengePulse {
+    0% { transform: scale(1); color: #ff3e3e; }
+    50% { transform: scale(1.05); color: #ff6b6b; }
+    100% { transform: scale(1); color: #ff3e3e; }
+}
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+        margin: 10px;
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    #question {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    button {
+        padding: 10px 15px;
+        font-size: 0.7rem;
+    }
+
+    #choices {
+        min-height: 280px;  /* Increased for better touch targets */
+    }
+
+    #choices button {
+        padding: 15px;      /* Larger touch targets */
+        margin: 12px 0;
+    }
+
+    #timer {
+        position: static;   /* Move timer below question for mobile */
+        margin-bottom: 15px;
+        text-align: center;
+        width: 100%;
+    }
+
+    #score {
+        font-size: 0.9rem;
+    }
+
+    .subtitle {
+        font-size: 0.6rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .challenge {
+        font-size: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 1rem;
+    }
+
+    #choices button {
+        font-size: 0.7rem;
+    }
+
+    #question {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+    button:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    #choices button {
+        margin: 15px 0;     /* More space between buttons for touch */
+    }
+}

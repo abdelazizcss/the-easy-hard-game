@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The Easy Hard Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="start-screen">
+            <h1>The Easy Hard Game</h1>
+            <p class="subtitle">CreaTed by Abdelaziz Boukhari</p>
+            <p class="challenge">"I challenge you to compleTe this game perfecTly!"</p>
+            <button id="start-btn">Start Quiz</button>
+        </div>
+        <div id="quiz-container" class="hide">
+            <div id="timer">Time: <span id="time">60</span>s</div>
+            <div id="question"></div>
+            <div id="choices"></div>
+            <div id="score">Score: <span id="score-value">0</span></div>
+        </div>
+        <div id="end-screen" class="hide">
+            <h2>Quiz Complete!</h2>
+            <p>Your final score: <span id="final-score"></span></p>
+            <button id="restart-btn">Restart Quiz</button>
+        </div>
+    </div>
+    <script src="websitegame.js"></script>
+</body>
+</html>
